@@ -6,13 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/header_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="28sp"
+        android:text="Hello World!"
+        app:layout_constraintTop_toBottomOf="@id/header_imageview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gender_imageview"
+        tools:text="Full name"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/alive_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
+        android:text="Alive"
+        app:layout_constraintTop_toBottomOf="@id/name_textview"
+        app:layout_constraintStart_toStartOf="@id/name_textview" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/gender_imageview"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/name_textview"
+        tools:srcCompat="@drawable/ic_baseline_male_24" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:id="@+id/divider"
+        android:background="@color/purple_500"
+        app:layout_constraintTop_toBottomOf="@id/alive_textview"
+        app:layout_constraintStart_toStartOf="@id/alive_textview"
+        app:layout_constraintEnd_toEndOf="@id/gender_imageview"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/originLabel_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/purple_700"
+        android:textSize="28sp"
+        android:text="Origin"
+        app:layout_constraintStart_toStartOf="@id/name_textview"
+        app:layout_constraintTop_toBottomOf="@id/name_textview"
+        android:textStyle="italic"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/origin_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
+        android:text="Earth"
+        app:layout_constraintTop_toBottomOf="@id/originLabel_textview"
+        app:layout_constraintStart_toStartOf="@id/originLabel_textview" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/speciesLabel_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/purple_700"
+        android:textSize="28sp"
+        android:text="Species"
+        app:layout_constraintStart_toStartOf="@id/origin_textview"
+        app:layout_constraintTop_toBottomOf="@id/origin_textview"
+        android:textStyle="italic"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/species_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
+        android:text="Species"
+        app:layout_constraintTop_toBottomOf="@id/speciesLabel_textview"
+        app:layout_constraintStart_toStartOf="@id/speciesLabel_textview" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
