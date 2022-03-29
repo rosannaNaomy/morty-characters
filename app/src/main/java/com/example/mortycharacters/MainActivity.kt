@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.ViewModelProvider
+import com.example.mortycharacters.epoxy.CharacterDetailsEpoxyController
 import com.example.mortycharacters.model.MortyCharacter
 import com.example.mortycharacters.network.NetworkLayer
 import com.example.mortycharacters.network.NetworkLayer.rMortyService
@@ -27,32 +28,23 @@ class MainActivity : AppCompatActivity() {
     val viewModel: SharedViewModel by lazy {
         ViewModelProvider(this)[SharedViewModel::class.java]
     }
+    private val epoxyController = CharacterDetailsEpoxyController()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.refreshCharacter(5)
         viewModel.characterByIdLiveData.observe(this){ response ->
+            epoxyController.characterResponse = response
             if(response == null){
                 Toast.makeText(this@MainActivity, "Unsuccessful network call.", Toast.LENGTH_SHORT).show()
                 return@observe
             }
-            fillViews(response)
         }
+        viewModel.refreshCharacter(50)
+
+        val epoxyRecyclerV = epoxyRecyclerView
+        epoxyRecyclerV.setControllerAndBuildModels(epoxyController)
     }
 
-
-    private fun fillViews(body: MortyCharacter) {
-        Picasso.get().load(body.image).into(header_imageview)
-        val name = name_textview
-        name.text = body.name
-
-        if(body.gender.equals("male", true)){
-            gender_imageview.setImageResource(R.drawable.ic_baseline_male_24)
-        }else{
-            gender_imageview.setImageResource(R.drawable.ic_baseline_female_24)
-        }
-
-    }
 }

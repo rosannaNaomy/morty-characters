@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="28sp"
+        android:text="Hello World!"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gender_imageview"
+        tools:text="Full name"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/alive_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
+        android:text="Alive"
+        app:layout_constraintTop_toBottomOf="@id/name_textview"
+        app:layout_constraintStart_toStartOf="@id/name_textview" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/gender_imageview"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/name_textview"
+        tools:srcCompat="@drawable/ic_baseline_male_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

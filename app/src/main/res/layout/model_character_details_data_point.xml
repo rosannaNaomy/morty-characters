@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Origin" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/label_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/title_TextView"
+        app:layout_constraintTop_toBottomOf="@id/title_TextView"
+        tools:text="Earth" />
+
+<!--    <androidx.appcompat.widget.AppCompatTextView-->
+<!--        android:id="@+id/speciesLabel_textview"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:textColor="@color/purple_700"-->
+<!--        android:textSize="28sp"-->
+<!--        android:text="Species"-->
+<!--        app:layout_constraintStart_toStartOf="@id/origin_textView"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/origin_textView"-->
+<!--        android:textStyle="italic"/>-->
+
+<!--    <androidx.appcompat.widget.AppCompatTextView-->
+<!--        android:id="@+id/species_textview"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/purple_700"-->
+<!--        android:textSize="18sp"-->
+<!--        android:text="Species"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/speciesLabel_textview"-->
+<!--        app:layout_constraintStart_toStartOf="@id/speciesLabel_textview" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
