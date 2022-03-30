@@ -18,8 +18,13 @@ class CharactersDataSource(
         callback: LoadInitialCallback<Int, MortyCharacter>
     ) {
         coroutineScope.launch {
-            val characterList = repository.getCharactersList(1)
-            callback.onResult(characterList,null, 2)
+            val page = repository.getCharactersPage(1)
+
+            if(page == null){
+                callback.onResult(emptyList(),null, null)
+                return@launch
+            }
+            callback.onResult(page.results, null, getPageIndexFromNext(page.info.next))
         }
     }
 
@@ -27,12 +32,25 @@ class CharactersDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, MortyCharacter>) {
         coroutineScope.launch {
-            val characterList = repository.getCharactersList(params.key)
-            callback.onResult(characterList, params.key + 1)
-        }    }
+            val page = repository.getCharactersPage(params.key)
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, MortyCharacter>) {
+            if (page == null){
+                callback.onResult(emptyList(), null)
+                return@launch
+            }
+            callback.onResult(page.results, getPageIndexFromNext(page.info.next))
+        }
+    }
+
+    override fun loadBefore(
+        params: LoadParams<Int>,
+        callback: LoadCallback<Int, MortyCharacter>
+    ) {
         TODO("Not yet implemented")
+    }
+
+    private fun getPageIndexFromNext(next: String?): Int?{
+        return next?.split("?page=")?.get(1)?.toInt()
     }
 
 }
