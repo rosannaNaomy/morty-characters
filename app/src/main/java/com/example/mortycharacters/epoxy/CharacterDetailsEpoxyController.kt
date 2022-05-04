@@ -1,11 +1,14 @@
 package com.example.mortycharacters.epoxy
 
+import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
 import com.example.mortycharacters.R
 import com.example.mortycharacters.databinding.ModelCharacterDetailsDataPointBinding
 import com.example.mortycharacters.databinding.ModelCharacterDetailsHeaderBinding
 import com.example.mortycharacters.databinding.ModelCharacterDetailsImageBinding
+import com.example.mortycharacters.databinding.ModelEpisodeCarouselItemBinding
 import com.example.mortycharacters.domain.models.Character
+import com.example.mortycharacters.domain.models.Episode
 import com.example.mortycharacters.network.response.CharacterResponse
 import com.squareup.picasso.Picasso
 
@@ -51,6 +54,17 @@ class CharacterDetailsEpoxyController: EpoxyController(){
         ImageEpoxyModel(
             imageUrl = character!!.image
         ).id("image").addTo(this)
+
+        if (character!!.episodeList.isNotEmpty()){
+            val items = character!!.episodeList.map {
+                EpisodeCarouselItemEpoxyModel(it).id(it.id)
+            }
+            CarouselModel_()
+                .id("episode_carousel")
+                .models(items)
+                .numViewsToShowOnScreen(1.15f)
+                .addTo(this)
+        }
 
         DataPointEpoxyModel(
             title = "Origin",
@@ -102,5 +116,17 @@ class CharacterDetailsEpoxyController: EpoxyController(){
         }
     }
 
+    data class EpisodeCarouselItemEpoxyModel(
+        val episode: Episode
+    ): ViewBindingKotlinModel<ModelEpisodeCarouselItemBinding>(R.layout.model_episode_carousel_item){
+
+        override fun ModelEpisodeCarouselItemBinding.bind() {
+            episodeTextView.text = episode.episode
+            episodeDetailsTextView.text = "${episode.name}\n${episode.airDate}"
+        }
+
+    }
+
+    //todo add title epoxy model
 
 }
