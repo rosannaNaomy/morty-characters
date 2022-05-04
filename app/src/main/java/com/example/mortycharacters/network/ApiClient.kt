@@ -1,16 +1,17 @@
 package com.example.mortycharacters.network
 
-import com.example.mortycharacters.model.CharacterPage
-import com.example.mortycharacters.model.MortyCharacter
+import com.example.mortycharacters.network.response.CharacterResponse
+import com.example.mortycharacters.network.response.EpisodeIdResponse
+import com.example.mortycharacters.network.response.PageInfoResponse
 import retrofit2.Response
 
 class ApiClient(private val rMService: RMortyService) {
 
-    suspend fun getCharacterbyId(characterId: Int): NetworkResponse<MortyCharacter>{
+    suspend fun getCharacterbyId(characterId: Int): NetworkResponse<CharacterResponse>{
         return safeApiCall { rMService.getCharacterbyId(characterId)}
     }
 
-    suspend fun getCharactersPage(pageIndex: Int): NetworkResponse<CharacterPage>{
+    suspend fun getCharactersPage(pageIndex: Int): NetworkResponse<PageInfoResponse>{
         return safeApiCall { rMService.getCharactersPage(pageIndex) }
     }
 
@@ -21,4 +22,16 @@ class ApiClient(private val rMService: RMortyService) {
             NetworkResponse.failure(e)
         }
     }
+
+    suspend fun getEpisodeById(episodeId: Int): NetworkResponse<EpisodeIdResponse> {
+        return safeApiCall { rMService.getEpisodeById(episodeId) }
+    }
+
+    suspend fun getEpisodeRange(episodeRange: String): NetworkResponse<List<EpisodeIdResponse>> {
+        return safeApiCall { rMService.getEpisodeRange(episodeRange) }
+    }
+
+//    suspend fun getEpisodesPage(pageIndex: Int): NetworkResponse<GetEpisodesPageResponse> {
+//        return safeApiCall { rickAndMortyService.getEpisodesPage(pageIndex) }
+//    }
 }

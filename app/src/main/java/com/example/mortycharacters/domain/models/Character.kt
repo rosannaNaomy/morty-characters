@@ -1,8 +1,7 @@
-package com.example.mortycharacters.model
+package com.example.mortycharacters.domain.models
 
-data class MortyCharacter(
-    val created: String,
-    val episode: List<String>,
+data class Character(
+    val episodeList: List<Episode> = listOf(),
     val gender: String,
     val id: Int,
     val image: String,
@@ -11,16 +10,15 @@ data class MortyCharacter(
     val origin: Origin,
     val species: String,
     val status: String,
-    val type: String,
-    val url: String
-)
+){
+    data class Location(
+        val name: String,
+        val url: String
+    )
 
-data class Location(
-    val name: String,
-    val url: String
-)
+    data class Origin(
+        val name: String,
+        val url: String
+    )
+}
 
-data class Origin(
-    val name: String,
-    val url: String
-)

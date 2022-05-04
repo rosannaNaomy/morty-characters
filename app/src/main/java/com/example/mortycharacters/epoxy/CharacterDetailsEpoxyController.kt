@@ -5,7 +5,8 @@ import com.example.mortycharacters.R
 import com.example.mortycharacters.databinding.ModelCharacterDetailsDataPointBinding
 import com.example.mortycharacters.databinding.ModelCharacterDetailsHeaderBinding
 import com.example.mortycharacters.databinding.ModelCharacterDetailsImageBinding
-import com.example.mortycharacters.model.MortyCharacter
+import com.example.mortycharacters.domain.models.Character
+import com.example.mortycharacters.network.response.CharacterResponse
 import com.squareup.picasso.Picasso
 
 class CharacterDetailsEpoxyController: EpoxyController(){
@@ -17,7 +18,7 @@ class CharacterDetailsEpoxyController: EpoxyController(){
                 requestModelBuild()
             }
         }
-    var characterResponse: MortyCharacter? = null
+    var character: Character? = null
         set(value) {
             field = value
             if (field != null){
@@ -34,7 +35,7 @@ class CharacterDetailsEpoxyController: EpoxyController(){
             return
         }
 
-        if(characterResponse == null){
+        if(character == null){
             return
         }
 
@@ -42,23 +43,23 @@ class CharacterDetailsEpoxyController: EpoxyController(){
         //add image model
         //add data points model(S)
         HeaderEpoxyModel(
-            name = characterResponse!!.name,
-            gender = characterResponse!!.gender,
-            status = characterResponse!!.status
+            name = character!!.name,
+            gender = character!!.gender,
+            status = character!!.status
         ).id("header").addTo(this)
 
         ImageEpoxyModel(
-            imageUrl = characterResponse!!.image
+            imageUrl = character!!.image
         ).id("image").addTo(this)
 
         DataPointEpoxyModel(
             title = "Origin",
-            description = characterResponse!!.origin.name
+            description = character!!.origin.name
         ).id("data_point_origin").addTo(this)
 
         DataPointEpoxyModel(
             title = "Species",
-            description = characterResponse!!.species
+            description = character!!.species
         ).id("data_point_species").addTo(this)
 
     }

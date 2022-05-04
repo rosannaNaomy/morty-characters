@@ -1,8 +1,8 @@
 package com.example.mortycharacters.network
 
-import com.example.mortycharacters.model.CharacterPage
-import com.example.mortycharacters.model.MortyCharacter
-import retrofit2.Call
+import com.example.mortycharacters.network.response.CharacterResponse
+import com.example.mortycharacters.network.response.EpisodeIdResponse
+import com.example.mortycharacters.network.response.PageInfoResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,11 +13,25 @@ interface RMortyService {
     @GET("character/{character-id}")
     suspend fun getCharacterbyId(
         @Path("character-id") characterId: Int
-    ): Response<MortyCharacter>
+    ): Response<CharacterResponse>
 
     @GET("character")
     suspend fun getCharactersPage(
         @Query("page") pageIndex: Int
-    ): Response<CharacterPage>
+    ): Response<PageInfoResponse>
 
+    @GET("episode/{episode-id}")
+    suspend fun getEpisodeById(
+        @Path("episode-id") episodeId: Int
+    ): Response<EpisodeIdResponse>
+
+    @GET("episode/{episode-range}")
+    suspend fun getEpisodeRange(
+        @Path("episode-range") episodeRange: String
+    ): Response<List<EpisodeIdResponse>>
+
+    @GET("episode/")
+    suspend fun getEpisodesPage(
+        @Query("page") pageIndex: Int
+    ): Response<EpisodeIdResponse>
 }

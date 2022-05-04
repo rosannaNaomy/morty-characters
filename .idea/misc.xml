@@ -9,6 +9,8 @@
         <entry key="app/src/main/res/layout/model_character_details_header.xml" value="0.37652282714843754" />
         <entry key="app/src/main/res/layout/model_character_details_image.xml" value="0.21602783203124998" />
         <entry key="app/src/main/res/layout/model_character_list_item.xml" value="0.146875" />
+        <entry key="app/src/main/res/layout/model_character_list_title.xml" value="0.146875" />
+        <entry key="app/src/main/res/layout/model_episode_carousel_item.xml" value="0.5139556884765626" />
         <entry key="app/src/main/res/layout/model_loading.xml" value="0.146875" />
       </map>
     </option>
